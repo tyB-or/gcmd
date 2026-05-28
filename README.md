@@ -1,6 +1,6 @@
 # gcmd
 
-**gcmd** 是一款面向工程师的**命令库管理桌面工具**：把常用命令行按统一格式保存在 `command.txt` 中，通过搜索快速定位，一键复制到终端使用。基于 **Go + Wails + Vue 3** 开发，支持 **Windows、macOS、Linux**（含 amd64 / arm64 架构）。
+**gcmd** 是一款面向工程师的**命令库管理桌面工具**：把常用命令行按统一格式保存在 `command.txt` 中，通过搜索快速定位，一键复制到终端使用。基于 **Go + Wails + Vue 3** 开发，支持 **Windows、macOS（含 amd64 / arm64 架构）。
 
 ---
 
@@ -38,17 +38,11 @@
 - 团队共享命令清单（导出 `command.txt` 分发）
 - 带占位符模板、需快速填参后复制的命令
 
-### 不做什么
-
-- **不执行命令**，仅管理与复制
-- **不做 shell 展开**（如 `$()`、通配符）
-- 不使用 Excel / 数据库
 
 ### 技术栈
 
 Go · Wails v2 · Vue 3 + Pinia · 数据文件 `command.txt`
 
-设计细节见 [方案.md](方案.md)。
 
 ---
 
@@ -62,17 +56,6 @@ Go · Wails v2 · Vue 3 + Pinia · 数据文件 `command.txt`
 | **macOS** | 10.15+，Intel 与 Apple Silicon（推荐 `darwin-universal` 通用包） |
 | **Linux** | 需 GTK3、WebKit2GTK |
 
-### 获取可执行文件
-
-| 平台 | 文件 | 构建产物目录（`./scripts/build-all.sh all`） |
-|------|------|-----------------------------------------------|
-| Windows 64 位 | `gcmd.exe` | `dist/releases/windows-amd64/` |
-| Windows ARM64 | `gcmd.exe` | `dist/releases/windows-arm64/` |
-| macOS | `gcmd.app` | `dist/releases/darwin-universal/` |
-| Linux 64 位 | `gcmd` | `dist/releases/linux-amd64/` |
-| Linux ARM64 | `gcmd` | `dist/releases/linux-arm64/` |
-
-可将 `command.txt` 与程序放在**同一目录**实现便携模式。
 
 ---
 
@@ -82,16 +65,12 @@ Go · Wails v2 · Vue 3 + Pinia · 数据文件 `command.txt`
 
 - **Windows**：WebView2（Win10/11 多数已自带）
 - **macOS**：若提示未验证开发者，在 **系统设置 → 隐私与安全性** 中允许
-- **Linux** 运行库示例：
 
-```bash
-# Debian / Ubuntu
-sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
-```
+
 
 ### 启动
 
-双击程序即可。首次运行若无数据文件，会自动创建并写入内置样例。
+双击程序即可。启动后导入自己的命令库。
 
 ---
 
@@ -130,7 +109,9 @@ sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
 
 **示例**：`echo linux` 表示须同时包含 echo 与 linux。
 
-结果卡片：第一行命令 + 右侧改 / 删 / 复制；第二行标签 · 描述。单击卡片：无占位直接复制，有占位打开填参面板。
+结果卡片：
+第一行命令 + 右侧改 / 删 / 复制；
+第二行标签 · 描述。单击卡片：无占位直接复制，有占位打开填参面板。
 
 ### 单条增删改
 
@@ -152,7 +133,7 @@ sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
 | 参数输入 | **默认留空**，自行填写 |
 | 预览 | **可编辑**，**复制以预览内容为准** |
 | 根据参数更新预览 | 手改预览后可重新生成 |
-| 修改（标题栏） | 编辑整条命令后回到填参 |
+| 修改（标题栏） | 编辑整条命令 |
 
 无占位符时点击即复制整行命令。
 
@@ -175,7 +156,7 @@ sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
 ### 批量操作
 
 1. 点 **批量** → 勾选命令（可 **全选**）
-2. **批量删除**：确认；超过 10 条须输入「删除」
+2. **批量删除**：批量删除
 3. **批量修改**：统一改标签 / 描述，或逐条编辑
 
 ---
@@ -211,65 +192,6 @@ touch  {}   {}
 
 ---
 
-## 数据存放位置
-
-查找 / 保存 `command.txt` 的优先级：
-
-1. 程序**同目录**下的 `command.txt`（便携模式）
-2. 当前工作目录下的 `command.txt`（开发时）
-3. 用户配置目录：
-
-| 平台 | 默认路径 |
-|------|----------|
-| Windows | `%AppData%\gcmd\command.txt` |
-| macOS | `~/Library/Application Support/gcmd/command.txt` |
-| Linux | `~/.config/gcmd/command.txt` |
-
----
-
-## 开发与编译
-
-### 环境要求
-
-| 用途 | 依赖 |
-|------|------|
-| 开发 / 构建 | [Go](https://go.dev/) 1.21+、[Node.js](https://nodejs.org/) 18+、[Wails v2](https://wails.io/docs/gettingstarted/installation) |
-
-Linux **构建**依赖：
-
-```bash
-sudo apt install libgtk-3-dev libwebkit2gtk-4.1-dev
-```
-
-### 日常开发
-
-```bash
-go test ./...
-wails dev
-```
-
-### 跨平台编译
-
-```bash
-chmod +x scripts/build-all.sh scripts/build.sh
-
-./scripts/build-all.sh              # 当前系统
-./scripts/build-all.sh all          # 全部发版包（推荐）
-./scripts/build-all.sh darwin       # macOS 通用 .app
-./scripts/build-all.sh windows      # Windows amd64 + arm64
-./scripts/build-all.sh linux        # Linux amd64 + arm64
-./scripts/build-all.sh --help       # 完整说明
-```
-
-Windows 本机：
-
-```powershell
-.\scripts\build-all.ps1 -Target all
-```
-
-推送至 `main` / `master` 时，GitHub Actions 会分平台构建，可在 Actions Artifacts 下载。
-
----
 
 ## 常见问题
 
@@ -282,14 +204,6 @@ Windows 本机：
 **空格、引号变了？**  
 gcmd 原样存储；检查是否用外部编辑器改坏了文件。
 
-**复制后命令不能执行？**  
-仅文本复制，请按 bash / zsh 环境自行调整引号。
-
-**多机同步？**  
-`command.txt` 放网盘或 Git，或用导出 / 导入、便携模式拷贝。
-
-**Linux 无法启动？**  
-安装 GTK3 与 WebKit2GTK 运行库（见上文安装说明）。
 
 ---
 
