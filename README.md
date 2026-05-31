@@ -74,6 +74,7 @@ Go · Wails v2 · Vue 3 + Pinia · 数据文件 `command.txt`
 │  ③ 结果区：命令卡片（右侧可弹面板）    │
 └─────────────────────────────────────┘
 ```
+<img width="1136" height="788" alt="image" src="https://github.com/user-attachments/assets/ad66350e-db69-4feb-b000-1f9d10dfcaa1" />
 
 ### 功能行按钮
 
