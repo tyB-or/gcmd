@@ -1,0 +1,170 @@
+./xray servicescan --list {ip_port_list.txt}
+#标签：漏洞扫描 命令描述：读取IP端口列表批量扫描服务
+./xray servicescan --port {port1,port2} --target {target_ip}
+#标签：漏洞扫描 命令描述：指定端口范围进行服务扫描
+./xray servicescan --target {ip/cidr}
+#标签：漏洞扫描 命令描述：扫描网段内主机及对应服务漏洞
+./xray servicescan --target {ip:port}
+#标签：漏洞扫描 命令描述：对指定IP+端口进行服务漏洞扫描
+./xray webscan --depth {num} --url {target_url}
+#标签：漏洞扫描 命令描述：设置爬虫深度，控制页面爬取层级
+./xray webscan --exclude-plugins {plugin_name} --url {target_url}
+#标签：漏洞扫描 命令描述：排除指定插件，执行扫描任务
+./xray webscan --list {url_list.txt}
+#标签：漏洞扫描 命令描述：读取文本内URL列表，批量扫描多个目标
+./xray webscan --listen {ip:port}
+#标签：漏洞扫描 命令描述：开启被动代理监听，抓取流量并扫描
+./xray webscan --max-request {num} --url {target_url}
+#标签：漏洞扫描 命令描述：限制最大请求数，控制扫描规模
+./xray webscan --no-crawl --url {target_url}
+#标签：漏洞扫描 命令描述：关闭爬虫，仅扫描当前指定URL
+./xray webscan --output {result.html} --url {target_url}
+#标签：漏洞扫描 命令描述：扫描结果导出为HTML格式报告
+./xray webscan --output {result.json} --url {target_url}
+#标签：漏洞扫描 命令描述：扫描结果导出为JSON格式数据
+./xray webscan --plugins {plugin_name1,plugin_name2} --url {target_url}
+#标签：漏洞扫描 命令描述：指定单个/多个插件执行针对性扫描
+./xray webscan --proxy {http://ip:port} --url {target_url}
+#标签：漏洞扫描 命令描述：配置代理服务器进行扫描
+./xray webscan --rate {num} --url {target_url}
+#标签：漏洞扫描 命令描述：限制每秒请求速率，避免触发防护
+./xray webscan --raw {request.txt}
+#标签：漏洞扫描 命令描述：读取原始HTTP请求包进行漏洞检测
+./xray webscan --timeout {second} --url {target_url}
+#标签：漏洞扫描 命令描述：设置请求超时时间
+./xray webscan --url {target_url}
+#标签：漏洞扫描 命令描述：对单个URL进行Web漏洞扫描
+./xray webscan --url {target_url} --cookie {cookie_str}
+#标签：漏洞扫描 命令描述：携带Cookie进行登录态Web扫描
+./xray webscan --url {target_url} --header {header_key:header_val}
+#标签：漏洞扫描 命令描述：自定义请求头进行扫描
+git add .
+#标签： 命令描述：将所有修改文件添加到暂存区
+git add {文件名}
+#标签： 命令描述：将指定文件添加到暂存区
+git branch
+#标签： 命令描述：查看本地所有分支
+git branch {分支名}
+#标签： 命令描述：创建新的分支
+git checkout {分支名}
+#标签： 命令描述：切换到指定分支
+git clone {仓库地址}
+#标签： 命令描述：克隆远程仓库到本地
+git commit -m "{提交说明}"
+#标签： 命令描述：提交暂存区内容到本地仓库
+git fetch
+#标签： 命令描述：拉取远程最新代码但不合并
+git init
+#标签： 命令描述：初始化本地Git仓库
+git log
+#标签： 命令描述：查看提交历史记录
+git merge {分支名}
+#标签： 命令描述：将指定分支合并到当前分支
+git pull
+#标签： 命令描述：拉取远程仓库代码并合并到本地
+git push
+#标签： 命令描述：将本地提交推送到远程仓库
+git remote -v
+#标签： 命令描述：查看远程仓库地址
+git remote add origin {仓库地址}
+#标签： 命令描述：关联本地仓库与远程仓库
+git reset --hard {版本号}
+#标签： 命令描述：回退到指定历史版本
+git rm {文件名}
+#标签： 命令描述：删除指定文件并记录到暂存区
+git stash
+#标签： 命令描述：暂存当前未提交的修改
+git stash pop
+#标签： 命令描述：恢复最近一次暂存的修改
+git status
+#标签： 命令描述：查看当前文件修改状态
+nmap --script {script_name} {target_ip}
+#标签：端口扫描 命令描述：调用指定脚本探测漏洞或信息
+nmap --traceroute {target_ip}
+#标签：端口扫描 命令描述：探测本机到目标的网络路由节点
+nmap -A {target_ip}
+#标签：端口扫描 命令描述：全功能综合扫描
+nmap -D RND:{num} {target_ip}
+#标签：端口扫描 命令描述：使用随机IP伪造扫描源
+nmap -O {target_ip}
+#标签：端口扫描 命令描述：识别目标主机操作系统类型及版本
+nmap -Pn {target_ip}
+#标签：端口扫描 命令描述：跳过主机存活检测，直接扫描端口
+nmap -T{level} {target_ip}
+#标签：端口扫描 命令描述：设置扫描速度等级，平衡速度与稳定性
+nmap -e {network_card} {target_ip}
+#标签：端口扫描 命令描述：指定网卡进行扫描
+nmap -iL {ip_list.txt}
+#标签：端口扫描 命令描述：读取文件IP列表批量扫描
+nmap -n {target_ip}
+#标签：端口扫描 命令描述：关闭DNS解析，提升扫描速度
+nmap -oG {output_file.log} {target_ip}
+#标签：端口扫描 命令描述：保存grep友好格式日志
+nmap -oN {output_file.txt} {target_ip}
+#标签：端口扫描 命令描述：将扫描结果保存为普通文本文件
+nmap -oX {output_file.xml} {target_ip}
+#标签：端口扫描 命令描述：导出XML格式扫描结果
+nmap -p {port1,port2} {target_ip}
+#标签：端口扫描 命令描述：扫描目标指定单个/多个端口
+nmap -p {start_port-end_port} {target_ip}
+#标签：端口扫描 命令描述：扫描目标指定区间端口
+nmap -p- {target_ip}
+#标签：端口扫描 命令描述：扫描目标全部65535端口
+nmap -sC {target_ip}
+#标签：端口扫描 命令描述：调用Nmap默认安全脚本进行信息探测
+nmap -sS {target_ip}
+#标签：端口扫描 命令描述：SYN半开放扫描，不易被日志记录
+nmap -sT {target_ip}
+#标签：端口扫描 命令描述：TCP全连接扫描，兼容性强
+nmap -sU {target_ip}
+#标签：端口扫描 命令描述：扫描目标UDP端口
+nmap -sV {target_ip}
+#标签：端口扫描 命令描述：探测端口对应的服务及版本信息
+nmap -sn {target_network}
+#标签：端口扫描 命令描述：仅探测在线主机，不进行端口扫描
+nmap {target_ip1} {target_ip2}
+#标签：端口扫描 命令描述：扫描多个指定IP地址
+nmap {target_ip}
+#标签：端口扫描 命令描述：扫描单个IP默认端口
+nmap {target_network}
+#标签：端口扫描 命令描述：扫描整个C段网段所有主机
+python3 sqlmap.py -r {request.txt}
+#标签：SQL注入 命令描述：读取HTTP请求包进行注入测试
+python3 sqlmap.py -u {url}
+#标签：SQL注入 命令描述：检测目标URL是否存在SQL注入漏洞
+python3 sqlmap.py -u {url} --batch
+#标签：SQL注入 命令描述：自动应答，非交互式运行
+python3 sqlmap.py -u {url} --cookie="{cookie_value}"
+#标签：SQL注入 命令描述：携带Cookie进行注入测试
+python3 sqlmap.py -u {url} --current-db
+#标签：SQL注入 命令描述：获取当前连接的数据库名称
+python3 sqlmap.py -u {url} --current-user
+#标签：SQL注入 命令描述：获取当前数据库登录用户
+python3 sqlmap.py -u {url} --dbs
+#标签：SQL注入 命令描述：获取目标数据库名称列表
+python3 sqlmap.py -u {url} --flush-session
+#标签：SQL注入 命令描述：清空历史会话缓存，重新检测
+python3 sqlmap.py -u {url} --level {level} --risk {risk}
+#标签：SQL注入 命令描述：设置探测等级与风险等级
+python3 sqlmap.py -u {url} --os-shell
+#标签：SQL注入 命令描述：尝试获取目标服务器系统shell
+python3 sqlmap.py -u {url} --passwords
+#标签：SQL注入 命令描述：获取数据库用户的密码哈希值
+python3 sqlmap.py -u {url} --privileges
+#标签：SQL注入 命令描述：查看数据库用户权限
+python3 sqlmap.py -u {url} --proxy {http://ip:port}
+#标签：SQL注入 命令描述：使用代理发起请求，隐藏真实地址
+python3 sqlmap.py -u {url} --sql-shell
+#标签：SQL注入 命令描述：获取交互式数据库SQL执行shell
+python3 sqlmap.py -u {url} --tamper {tamper_script}
+#标签：SQL注入 命令描述：加载绕过脚本，规避WAF防护
+python3 sqlmap.py -u {url} --threads {num}
+#标签：SQL注入 命令描述：开启多线程提升扫描速度
+python3 sqlmap.py -u {url} --users
+#标签：SQL注入 命令描述：枚举数据库所有用户账号
+python3 sqlmap.py -u {url} -D {dbname} --tables
+#标签：SQL注入 命令描述：获取指定数据库下的所有表名
+python3 sqlmap.py -u {url} -D {dbname} -T {tablename} --columns
+#标签：SQL注入 命令描述：获取指定表下的所有字段名
+python3 sqlmap.py -u {url} -D {dbname} -T {tablename} -C {column1,column2} --dump
+#标签：SQL注入 命令描述：导出指定字段的数据内容
